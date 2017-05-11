@@ -122,9 +122,9 @@ let s:purple = { "gui": "#C678DD", "cterm": "170", "cterm16": "5" }
 
 let s:cyan = { "gui": "#56B6C2", "cterm": "38", "cterm16": "6" }
 
-let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16": "7" }
+let s:white = { "gui": "#edf0f1", "cterm": "145", "cterm16": "7" }
 
-let s:black = { "gui": "#282C34", "cterm": "235", "cterm16": "0" }
+let s:black = { "gui": "#1c1e23", "cterm": "235", "cterm16": "0" }
 let s:visual_black = { "gui": "NONE", "cterm": "NONE", "cterm16": s:black.cterm16 } " Black out selected text in 16-color visual mode
 
 let s:comment_grey = { "gui": "#5C6370", "cterm": "59", "cterm16": "15" }
@@ -296,8 +296,9 @@ call s:h("jsStorageClass", { "fg": s:purple })
 call s:h("jsSuper", { "fg": s:red })
 call s:h("jsTemplateBraces", { "fg": s:dark_red })
 call s:h("jsTemplateVar", { "fg": s:green })
-call s:h("jsThis", { "fg": s:red })
+" call s:h("jsThis", { "fg": s:red })
 call s:h("jsUndefined", { "fg": s:dark_yellow })
+
 " https://github.com/othree/yajs.vim
 call s:h("javascriptArrowFunc", { "fg": s:purple })
 call s:h("javascriptClassExtends", { "fg": s:purple })
@@ -319,6 +320,30 @@ call s:h("javascriptPropertyName", { "fg": s:green })
 call s:h("javascriptTemplateSB", { "fg": s:dark_red })
 call s:h("javascriptVariable", { "fg": s:purple })
 
+" custom javascript
+call s:h("jsVariableDef", { "fg": s:red })
+call s:h("jsModuleKeyword", { "fg": s:red })
+call s:h("jsFuncArgs", { "fg": s:red })
+call s:h("jsFuncBlock", { "fg": s:red })
+call s:h("jsFunctionKey", { "fg": s:blue })
+call s:h("jsParen", { "fg": s:red })
+call s:h("jsParenSwitch", { "fg": s:red })
+call s:h("jsParenIfElse", { "fg": s:red })
+call s:h("jsParenRepeat", { "fg": s:red })
+call s:h("jsIfElseBlock", { "fg": s:red })
+call s:h("jsTernaryIf", { "fg": s:red })
+call s:h("jsBracket", { "fg": s:red })
+call s:h("jsObjectKey", { "fg": s:red })
+call s:h("jsObjectProp", { "fg": s:yellow })
+call s:h("jsGlobalNodeObjects", { "fg": s:yellow })
+call s:h("jsThis", { "fg": s:yellow })
+call s:h("jsSwitchBlock", { "fg": s:red })
+call s:h("jsRepeatBlock", { "fg": s:red })
+call s:h("jsRegexpGroup", { "fg": s:cyan })
+call s:h("jsRegexpOr", { "fg": s:white })
+call s:h("jsRegexpBoundary", { "fg": s:purple })
+call s:h("jsRegexpString", { "fg": s:cyan })
+
 " JSON
 call s:h("jsonCommentError", { "fg": s:white })
 call s:h("jsonKeyword", { "fg": s:red })
@@ -333,9 +358,14 @@ call s:h("jsonStringSQError", { "fg": s:red, "gui": "reverse" })
 call s:h("jsonSemicolonError", { "fg": s:red, "gui": "reverse" })
 
 " LESS
-call s:h("lessVariable", { "fg": s:purple })
-call s:h("lessAmpersandChar", { "fg": s:white })
+" call s:h("lessVariable", { "fg": s:purple })
+" call s:h("lessAmpersandChar", { "fg": s:white })
 call s:h("lessClass", { "fg": s:dark_yellow })
+
+" custom Less
+call s:h("lessVariable", { "fg": s:red })
+call s:h("lessAmpersandChar", { "fg": s:dark_yellow })
+
 
 " Markdown
 call s:h("markdownCode", { "fg": s:green })
