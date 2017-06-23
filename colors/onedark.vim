@@ -225,6 +225,10 @@ call s:h("VisualNOS", { "bg": s:visual_grey }) " Visual mode selection when vim 
 call s:h("WarningMsg", { "fg": s:yellow }) " warning messages
 call s:h("WildMenu", { "fg": s:black, "bg": s:blue }) " current match in 'wildmenu' completion
 
+" add QuickFixLine for vim8.0.0641
+call s:h("QuickFixLine", { "fg": s:black, "bg": s:blue }) "QuickFixLine or Location List line
+
+
 " +--------------------------------+
 " | Language-Specific Highlighting |
 " +--------------------------------+
