@@ -122,9 +122,11 @@ let s:purple = { "gui": "#C678DD", "cterm": "170", "cterm16": "5" }
 
 let s:cyan = { "gui": "#56B6C2", "cterm": "38", "cterm16": "6" }
 
-let s:white = { "gui": "#e8edee", "cterm": "145", "cterm16": "7" }
-
-let s:black = { "gui": "#1c1e23", "cterm": "235", "cterm16": "0" }
+" myonedark
+" let s:white = { "gui": "#e8edee", "cterm": "145", "cterm16": "7" }
+" let s:black = { "gui": "#1c1e23", "cterm": "235", "cterm16": "0" }
+let s:white = { "gui": "#abb2bf", "cterm": "145", "cterm16": "7" }
+let s:black = { "gui": "#282c34", "cterm": "235", "cterm16": "0" }
 let s:visual_black = { "gui": "NONE", "cterm": "NONE", "cterm16": s:black.cterm16 } " Black out selected text in 16-color visual mode
 
 let s:comment_grey = { "gui": "#5C6370", "cterm": "59", "cterm16": "15" }
@@ -327,7 +329,8 @@ call s:h("javascriptVariable", { "fg": s:purple })
 " custom javascript
 call s:h("jsVariableDef", { "fg": s:red })
 call s:h("jsModuleKeyword", { "fg": s:red })
-call s:h("jsFuncArgs", { "fg": s:red })
+call s:h("jsFuncArgs", { "fg": s:red, "gui": 'italic' })
+call s:h("jsArrowFuncArgs", { "fg": s:red, "gui": "italic" })
 call s:h("jsFuncBlock", { "fg": s:red })
 call s:h("jsFunctionKey", { "fg": s:blue })
 call s:h("jsParen", { "fg": s:red })
