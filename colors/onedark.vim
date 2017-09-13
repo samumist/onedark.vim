@@ -302,7 +302,7 @@ call s:h("jsStorageClass", { "fg": s:purple })
 call s:h("jsSuper", { "fg": s:red })
 call s:h("jsTemplateBraces", { "fg": s:dark_red })
 call s:h("jsTemplateVar", { "fg": s:green })
-call s:h("jsThis", { "fg": s:red })
+call s:h("jsThis", { "fg": s:dark_yellow, "gui": "italic" })
 call s:h("jsUndefined", { "fg": s:dark_yellow })
 
 " https://github.com/othree/yajs.vim
