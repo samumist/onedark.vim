@@ -107,14 +107,9 @@ endfunction
 
 " Color Variables {{{
 
-<<<<<<< HEAD
 " myonedark
 " let s:white = { "gui": "#e8edee", "cterm": "145", "cterm16": "7" }
 " let s:black = { "gui": "#1c1e23", "cterm": "235", "cterm16": "0" }
-let s:white = { "gui": "#abb2bf", "cterm": "145", "cterm16": "7" }
-let s:black = { "gui": "#282c34", "cterm": "235", "cterm16": "0" }
-let s:visual_black = { "gui": "NONE", "cterm": "NONE", "cterm16": s:black.cterm16 } " Black out selected text in 16-color visual mode
-=======
 let s:colors = onedark#GetColors()
 
 let s:red = s:colors.red
@@ -135,7 +130,6 @@ let s:visual_grey = s:colors.visual_grey
 let s:menu_grey = s:colors.menu_grey
 let s:special_grey = s:colors.special_grey
 let s:vertsplit = s:colors.vertsplit
->>>>>>> upstream/master
 
 " }}}
 
@@ -297,12 +291,13 @@ call s:h("jsModuleAs", { "fg": s:purple })
 call s:h("jsModuleWords", { "fg": s:purple })
 call s:h("jsModules", { "fg": s:purple })
 call s:h("jsNull", { "fg": s:dark_yellow })
-call s:h("jsOperator", { "fg": s:purple })
+call s:h("jsOperator", { "fg": s:white })
 call s:h("jsStorageClass", { "fg": s:purple })
 call s:h("jsSuper", { "fg": s:red })
 call s:h("jsTemplateBraces", { "fg": s:dark_red })
 call s:h("jsTemplateVar", { "fg": s:green })
-call s:h("jsThis", { "fg": s:dark_yellow, "gui": "italic" })
+call s:h("jsTemplateExpression", { "fg": s:red })
+call s:h("jsThis", { "fg": s:red })
 call s:h("jsUndefined", { "fg": s:dark_yellow })
 
 " https://github.com/othree/yajs.vim
@@ -340,8 +335,11 @@ call s:h("jsParenRepeat", { "fg": s:red })
 call s:h("jsIfElseBlock", { "fg": s:red })
 call s:h("jsTernaryIf", { "fg": s:red })
 call s:h("jsBracket", { "fg": s:red })
+call s:h("jsObject", { "fg": s:red })
 call s:h("jsObjectKey", { "fg": s:red })
-call s:h("jsObjectProp", { "fg": s:yellow })
+call s:h("jsObjectProp", { "fg": s:red })
+call s:h("jsDestructuringBlock", { "fg": s:red })
+call s:h("jsDestructuringPropertyValue", { "fg": s:red })
 call s:h("jsGlobalNodeObjects", { "fg": s:yellow })
 call s:h("jsSwitchBlock", { "fg": s:red })
 call s:h("jsRepeatBlock", { "fg": s:red })
@@ -349,6 +347,7 @@ call s:h("jsRegexpGroup", { "fg": s:cyan })
 call s:h("jsRegexpOr", { "fg": s:white })
 call s:h("jsRegexpBoundary", { "fg": s:purple })
 call s:h("jsRegexpString", { "fg": s:cyan })
+call s:h("jsThis", { "fg": s:yellow, "gui": "italic" })
 
 " JSON
 call s:h("jsonCommentError", { "fg": s:white })
