@@ -1,10 +1,22 @@
 #!/usr/bin/env node
 
+const _ = require('lodash') // ships with termcolors; only used because of termcolors customization
 const doT = require('doT')
+const termcolors = require('termcolors')
 const { readFileSync, writeFileSync } = require('fs')
 const { resolve } = require('path')
 
-doT.templateSettings.strip = false // preserve whitespace
+doT.templateSettings = {
+	evaluate:    /\<\%([\s\S]+?)\%\>/g,
+	interpolate: /\<\%=([\s\S]+?)\%\>/g,
+	encode:      /\<\%!([\s\S]+?)\%\>/g,
+	use:         /\<\%#([\s\S]+?)\%\>/g,
+	define:      /\<\%##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\%\>/g,
+	conditional: /\<\%\?(\?)?\s*([\s\S]*?)\s*\%\>/g,
+	iterate:     /\<\%~\s*(?:\%\>|([\s\S]+?)\s*\:\s*([\w$]+)\s*(?:\:\s*([\w$]+))?\s*\%\>)/g,
+	varname: 'it',
+	strip: false, // preserve whitespace
+}
 
 const baseColors = Object.freeze({
 	red: { gui: '#E06C75', cterm: '204', cterm16: '1' }, // alternate cterm: 168
@@ -21,7 +33,7 @@ const baseColors = Object.freeze({
 
 const specialColors = Object.freeze({
 	comment_grey: { gui: '#5C6370', cterm: '59', cterm16: '15' },
-	gutter_fg_grey: { gui: '#636D83', cterm: '238', cterm16: '15' },
+	gutter_fg_grey: { gui: '#4B5263', cterm: '238', cterm16: '15' },
 	cursor_grey:  { gui: '#2C323C', cterm: '236', cterm16: '8' },
 	visual_grey: { gui: '#3E4452', cterm: '237', cterm16: '15' },
 	menu_grey: { cterm16: '8' }, // vim theme handles gui/cterm values
@@ -32,9 +44,8 @@ const specialColors = Object.freeze({
 const colors = Object.assign({}, baseColors, specialColors)
 
 const templateMap = Object.freeze({
-	'./templates/onedark.template.vim': '../colors/onedark.vim',
-	'./templates/lightline.template.vim': '../autoload/lightline/colorscheme/onedark.vim',
-	'./templates/airline.template.vim': '../autoload/airline/themes/onedark.vim'
+	'templates/autoload.template.vim': '../autoload/onedark.vim',
+	'templates/One Dark.Xresources': '../term/One Dark.Xresources'
 })
 
 const shouldCheck = String(process.argv[2]).toLowerCase() === 'check'
@@ -99,6 +110,58 @@ Object.keys(templateMap).forEach(templateFilename => {
 	}
 
 })
+
+try {
+	// Use the Xresources theme as a color source since it was generated above via templating
+	const xresources = readFileSync(resolve(__dirname, '../term/One Dark.Xresources'), 'utf8')
+	const terminalPalette = termcolors.xresources.import(xresources)
+
+	let itermTemplate, terminalAppTemplate
+
+	// Compile custom terminal color templates based on ones that ship with termcolors
+	try {
+		itermTemplate = termcolors.export(
+			// From termcolors/lib/formats/iterm.js
+			readFileSync(resolve(__dirname, 'templates/One\ Dark.itermcolors')),
+			_.partialRight(_.mapValues, function (color) {
+				return color.toAvgRgbArray()
+			})
+		)
+
+		// From termcolors/lib/formats/terminal-app.js
+		const code = [
+			new Buffer('62706c6973743030d40102030405061516582476657273696f6e58246f626a65637473592461726368697665725424746f7012000186a0a307080f55246e756c6cd3090a0b0c0d0e554e535247425c4e53436f6c6f7253706163655624636c6173734f1027', 'hex'),
+			new Buffer('0010018002d2101112135a24636c6173736e616d655824636c6173736573574e53436f6c6f72a21214584e534f626a6563745f100f4e534b657965644172636869766572d1171854726f6f74800108111a232d32373b41484e5b628c8e9095a0a9b1b4bdcfd2d700000000000001010000000000000019000000000000000000000000000000d9', 'hex')
+		]
+
+		terminalAppTemplate = termcolors.export(
+			readFileSync(resolve(__dirname, 'templates/One\ Dark.terminal')),
+			// From termcolors/lib/formats/terminal-app.js
+			_.partialRight(_.mapValues, function (color) {
+				var srgb = color.toAvgRgbArray()
+				srgb = srgb.map(function (n) {
+					return n.toFixed(10).toString()
+				}).join(' ')
+				var output = code[0].toString('binary') + srgb + code[1].toString('binary')
+				output = (new Buffer(output, 'binary')).toString('base64')
+				return output.match(/.{1,68}/g).join('\n\t')
+			})
+		)
+
+	} catch (e) {
+		handleError('Error compiling terminal color template', e)
+	}
+
+	try {
+		writeFileSync(resolve(__dirname, '../term/One\ Dark.itermcolors'), itermTemplate(terminalPalette))
+		writeFileSync(resolve(__dirname, '../term/One\ Dark.terminal'), terminalAppTemplate(terminalPalette))
+	} catch (e) {
+		handleError('Error writing terminal color file', e)
+	}
+
+} catch (e) {
+	handleError('Error reading Xresources terminal color file', e)
+}
 
 console.log('Success!')
 
