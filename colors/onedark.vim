@@ -436,6 +436,12 @@ call s:h("phpMagicConstants", { "fg": s:dark_yellow })
 call s:h("phpSuperglobals", { "fg": s:red })
 call s:h("phpConstants", { "fg": s:dark_yellow })
 
+" Python
+call s:h("pythonKeywordFormat", { "fg": s:blue})
+call s:h("pythonStrFormat", { "fg": s:dark_yellow})
+call s:h("pythonNone", { "fg": s:dark_yellow})
+call s:h("pythonBuiltinFunc", { "fg": s:cyan})
+
 " Ruby
 call s:h("rubyBlockParameter", { "fg": s:red})
 call s:h("rubyBlockParameterList", { "fg": s:red })
