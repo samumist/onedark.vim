@@ -441,7 +441,7 @@ call s:h("phpConstants", { "fg": s:dark_yellow })
 " Python
 call s:h("pythonKeywordFormat", { "fg": s:blue})
 call s:h("pythonStrFormat", { "fg": s:dark_yellow})
-call s:h("pythonKeywordNone", { "fg": s:dark_yellow})
+call s:h("pythonConstant", { "fg": s:dark_yellow})
 call s:h("pythonBuiltinFunc", { "fg": s:cyan})
 call s:h("pythonBuiltin", { "fg": s:cyan})
 call s:h("pythonFuncCall", { "fg": s:blue})
