@@ -250,6 +250,8 @@ call s:h("cssSelectorOp", { "fg": s:purple })
 call s:h("cssSelectorOp2", { "fg": s:purple })
 call s:h("cssTagName", { "fg": s:red })
 
+call s:h("cssAttrRegion", { "fg": s:dark_yellow })
+
 " Go
 call s:h("goDeclaration", { "fg": s:purple })
 
@@ -441,6 +443,11 @@ call s:h("pythonKeywordFormat", { "fg": s:blue})
 call s:h("pythonStrFormat", { "fg": s:dark_yellow})
 call s:h("pythonNone", { "fg": s:dark_yellow})
 call s:h("pythonBuiltinFunc", { "fg": s:cyan})
+call s:h("pythonBuiltin", { "fg": s:cyan})
+call s:h("pythonFuncCall", { "fg": s:blue})
+call s:h("pythonParameters", { "fg": s:dark_yellow, "gui": "italic", "cterm": "italic"})
+call s:h("pythonEscape", { "fg": s:cyan})
+call s:h("pythonExtraOperator", { "fg": s:white})
 
 " Ruby
 call s:h("rubyBlockParameter", { "fg": s:red})
