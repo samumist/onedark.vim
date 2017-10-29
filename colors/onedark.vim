@@ -353,6 +353,7 @@ call s:h("jsRegexpString", { "fg": s:cyan })
 call s:h("jsSpreadExpression", { "fg": s:red })
 call s:h("jsSpreadOperator", { "fg": s:white })
 call s:h("jsThis", { "fg": s:yellow, "gui": "italic" })
+call s:h("jsCommentTodo", { "fg": s:purple, "gui": "italic", "cterm": "italic" }) " any comment
 
 " JSON
 call s:h("jsonCommentError", { "fg": s:white })
