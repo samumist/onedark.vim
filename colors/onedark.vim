@@ -441,6 +441,7 @@ call s:h("phpConstants", { "fg": s:dark_yellow })
 
 " Python
 call s:h("pythonKeywordFormat", { "fg": s:blue})
+call s:h("pythonKeywordComment", { "fg": s:purple})
 call s:h("pythonStrFormat", { "fg": s:dark_yellow})
 call s:h("pythonConstant", { "fg": s:dark_yellow})
 call s:h("pythonInclude", { "fg": s:purple})
@@ -453,6 +454,9 @@ call s:h("pythonParameters", { "fg": s:dark_yellow, "gui": "italic", "cterm": "i
 call s:h("pythonParam", { "fg": s:dark_yellow, "gui": "italic", "cterm": "italic"})
 call s:h("pythonEscape", { "fg": s:cyan})
 call s:h("pythonExtraOperator", { "fg": s:white})
+call s:h("pythonVariableUpper", { "fg": s:dark_yellow})
+call s:h("pythonParametersDefault", { "fg": s:red, "gui": "italic", "cterm": "italic"})
+call s:h("pythonStrF", { "fg": s:purple})
 
 " Ruby
 call s:h("rubyBlockParameter", { "fg": s:red})
